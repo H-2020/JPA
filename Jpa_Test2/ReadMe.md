@@ -1,0 +1,4 @@
+- RULE 01 -> Call the correct method from repository.
+- RULE 02 -> check the parameters.  
+- RULE 03 -> check if there is a return value 
+- RULE 04 -> to test your code, never call another repository method because we can never make sure that other method will function as expected.
