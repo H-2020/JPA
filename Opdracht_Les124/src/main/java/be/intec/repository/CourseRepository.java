@@ -162,18 +162,22 @@ public class CourseRepository {
     public List<Course> search(String keyword) {
 
 
+       List<Course> courseList = new ArrayList<>();
+
         EntityManager manager = JPAFactory.getEntityManagerFactory().createEntityManager();
 
         manager.getTransaction().begin();
 
-        // voeg je code hier toe..
+        Query query = manager.createNativeQuery(("SELECT * FROM course c " +
+                        "WHERE c.naam LIKE '%" + keyword + "%'" +
+                        "OR c.startDate LIKE '%" + keyword + "%'"), Course.class);
+        studentList = query.getResultList();
 
         manager.getTransaction().commit();
 
-
         manager.close();
 
-        return Collections.emptyList();
+        return courseList;
 
     }
 
