@@ -162,18 +162,23 @@ public class ExamRepository {
     public List<Exam> search(String keyword) {
 
 
+        List<Exam> examList = new ArrayList<>();
+
         EntityManager manager = JPAFactory.getEntityManagerFactory().createEntityManager();
 
         manager.getTransaction().begin();
 
-        // voeg je code hier toe..
+        Query query = manager.createNativeQuery(("SELECT * FROM exam e " +
+                        "WHERE e.naam LIKE '%" + keyword + "%'" +
+                        "OR e.examDate LIKE '%" + keyword + "%'"), Exam.class);
+        studentList = query.getResultList();
 
         manager.getTransaction().commit();
 
-
         manager.close();
 
-        return Collections.emptyList();
+        return examList;
+
 
     }
 
